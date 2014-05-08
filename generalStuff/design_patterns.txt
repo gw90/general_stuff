@@ -1,0 +1,83 @@
+--------------------------------------- Design Pattersn start --------------------------------------
+A usefull way for developing robust software faster.
+A way of encapsulating large ideas in friendly terms.
+
+------------- The factory pattern start -------------
+* A class that has some methods that create objects for you.
+* Instead of using the new keyword directly, we can use the factory class to create objects.
+* The benefit of using the factory design pattern is that if we want to change the type of objects
+  created, we change just the factory. example:
+class UserFactory
+{
+  public static function Create( $id )
+  {
+    return new User( $id );
+  }
+}  
+  
+* When we need to create an object that has many properties that needs to be set, the factory
+	pattern encapsulates the complex initialization process in a single location.
+	This way the code is not copied and pasted all over the code.
+* factory methods can be used in classes, example:
+...
+class User implements IUser
+{
+  public static function Load( $id ) 
+  {
+        return new User( $id );
+  }
+  ...
+}
+
+-------------- The factory pattern end --------------
+
+-------------- The singelton pattern start --------------
+* It often makes sense conceptually and architectually to allow access to one, and only one
+	instance of a particular class.
+* Some application resources are exclusive in that there is one and only one of this type of resource.
+	Example: The connection to a data base.
+* The singelton pattern can be used instead of global variables, which are less suitable to large applications.
+-------------- The singelton pattern end ----------------
+
+-------------- The observer pattern start --------------
+* A way for objects to talk with each other without necessarily understanding why.
+* One object makes itself observable by adding a method that allows another object,
+	the observer, to register itself as an observer.
+	When the obsevable object changes, it sends a message to the registered observers.
+	The observers do with that information what they need.
+* Example: An observer that sends a message to a new user after registration.
+-------------- The observer pattern end ----------------
+
+-------------- The chain-of-command pattern start --------------
+* The chain-of-command pattern routes a message,command,request or whatever thourgh a set of handlers.
+	If one of the handlers can handle the request, the process stopes.
+* Sending a string of the command name to a method in the command chain class,
+	this methods calls methods in various classes to find the appropriate class and method.
+* The chain-of-command pattern can be valuable in creating an extensible architecture for processing requests, 
+	which can be applied to many problems.
+-------------- The chain-of-command pattern end ----------------
+
+-------------- The strategy pattern start --------------
+* In this design pattern, algorithems are extracted from complex classes so that they can 
+	be replaced or refactored easily.
+-------------- The strategy pattern end ----------------
+
+-------------- The Facade pattern start --------------
+
+
+-------------- The Facade pattern end ----------------
+
+
+---------------------------------------- Design Pattersn end ---------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

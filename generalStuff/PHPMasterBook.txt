@@ -1,0 +1,85 @@
+Object Oriented Programming:
+
+- The main reason for using OOP is encapsulation - associating values and functions togther in one unit.
+
+- The class is stored in a file named the same as the class in lowercase letters - Courier -> courier.php .
+
+- __construct() is a magic method for setting up and configuring the object before it is put to use.
+
+- A static method or property is one that can be used without instantiating the object first.
+
+- Namespaces: Created to avoid the need of long class names and to provide an easy way 
+  to isolate classes and functions from various libraries.
+  Namespaces are declared at the top of the file and applay to every class,function and constant in that file.
+  Namespaces help when we want to call classes with the same name from different frameworks, by adding 
+  namespace shipping to class log from framework A and namespace writing to class log from framework B
+  we can call new shipping/log and new writing/log from the global namespace 
+  or \shipping\log from within a different namespace.
+  We can abbreviate a nested namespace to only use its lowest level: use shop\shipping; and then shipping\curier
+  We can also declare nicknames: use admin\user as u
+
+- Object Inheritance: Classes can inherit or extand one parent class.
+	A child class has all the characteristics of its parent class and his own methods.
+	Any method in the child class that has same name as the method in the parent class, will overwrite it.
+
+- Type Hinting: Specify what type of parameters are aceptable for a method (Object name,arrays)
+	Can not type hint strings or numeric types.
+	
+- Polymorphism: "Many forms", The ability to identify an object as an object of the parent class or one of the childeren
+	,grandchilderen,etc. classes.
+	
+- Passing Objects as Function Parameters: When we pass an object into a function, the function operates
+	on the same object, changes applied on the object from within the function will be reflected outside.
+	There is no need to return an object that was sent to a function.
+	To create a separate copy of an object we use the clone keyword. We can use the magic method __clone()
+	to dictate additional behaviour (or disallow cloning) when cloning an object.
+	
+- Fluent Interfaces: If we return an object from a method,
+	we can build a fluent interface in our application which enables us to chain methods togther.
+	example: $obj->method1()->method2();
+	
+- Public, Private, Protected: access modifiers.
+	Public: The default behavior, Public methods and properties can be accessed from outside the class.
+	Private: Methods and properties can be accessed from inside the class they are declared.
+	Protected: A Protected method is similar to a private method, it can be accessed only 
+		from within the class it is declared, but also from classes which inherit from that class.
+		
+- Getters and Setters: Marking all properties as Protected 
+	and using Getters and Setters to control visibilty will provide a hook or an intecept point if needed.
+	
+- Using Magic __get and __set methods: We can add implemintation for these methods and modify
+		what happens when accessing a property from outside of the class.
+		Example: decide what happenss when calling a property which doesn't exist.
+		
+- Interfaces: A way of describing the capabilities of an object.
+	An Interface specifies the names of methods and their parameters, without any functunality code.
+	We can applay Interfaces to multiple classes.
+	Interfaces which are applied to one class will be inherited by their children.
+	
+- Exceptions: Exceptions are an OOP approach to error handling.
+	Exception is a built in class in PHP, an Exception object will contain info regarding:
+	where the error occured(file name and line number), an error message and (opt) an error code.
+- Exceptions: Exceptions are available in the more modern extensions such as PDO. others still rise errors.
+	try{
+		//run code
+	}catch(Exception $e){
+		//reaction - log,handle...
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

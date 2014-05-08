@@ -1,0 +1,94 @@
+
+http://www.webmaster-talk.com/php-forum/78717-differences-between-php4-and-php5.html
+----------- Differences between PHP4 and PHP5 ----------------
+
+* Object Cloning : creating a copy of an object with the keyword: clone 
+The clone keyword can replace using the reference operator for objects.
+
+* Class Constants and Static Methods/Properties are available
+Can create class constans with the keyword: const
+These constants are contained within a class and can be accessed using: :: operator
+
+* Visibility
+Public,Protected,Private
+Protected: members are accessible to the class, any subclasses and parents
+
+* Unified Constructors and Destructors
+ __construct()
+ __destruct()
+ 
+ * Abstract Classes
+Any class that contain at least one abstract method, must be an abstract class.
+Method in an abstract class simply declare the method's signature - do not define implementation 
+An abstract class can have abstract and non abstract methods
+
+* Interfaces
+Interfaces are defined using the interface keyword
+All methods are public, without implementation.
+Interfaces to help you design common APIs.
+An interface defines the methods a class must implement.
+The big advantage of interfaces is that a class can implement an unlimited number of interfaces.
+
+* Magic Methods
+
+These functions need to be implemented by the programmer.
+Magic functions are not called directly by the programmer.
+The naming of these methods is prefixed with a double-underscore.
+Ex: 
+__construct() : creating a new object
+__autoload() : A reference to an unknowen class is made.
+__toString() : When an object is treated like a string (echo $obj)  .
+__invoke() : When a script tries to call an object as a function.
+__call() : Calling a class method which doesn't exist.
+__get() : Calling an unknowen class variable.
+__set() : Writing data to an inaccessible property.
+
+* Finality
+The final keyword indicates that a method can not be overridden by a child.
+A class can also be declared final.
+
+* Standard PHP Library (SPL)
+A collection of interfaces and classes that are meant to solve common problems.
+Example functions:
+class_implements(class instance or string) : Returns an array with the names of the interfaces implemented by the given class and its parents
+class_parents(class instance or string) : Returns array with parent classes of the given class
+iterator_apply(ArrayIterator,function name,array) : Applys a function (function name) to every element in the given array (array_walk())
+Example Interface:
+Iterator interface : Allows an object to dictate how it will be iterated
+
+* Type Hinting
+We can enforce what kind of variables are passed to functions or classes (Object, Arrays, interfaces,callable)
+
+* Exceptions
+An exception is an object. We throw an exception when an error occurs.
+To prevent fatal errors we can surround risky code with a try block and catch the exception if throwen.
+finally : will be executed after the try and catch blocks
+
+* E_STRICT Error Level
+- Became part of E_ALL
+
+* Foreach Construct and By-Reference Value
+
+* New Functions
+http://php.net/manual/en/migration5.functions.php
+
+* New Extensions
+SimpleXML : Easy processing of XML data
+DOM , XSL : 
+PDO : Working with databases
+Hash : Access to many hash functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

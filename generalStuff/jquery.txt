@@ -1,0 +1,8 @@
+
+.ready() : run code as soon as the document is ready, before loading images,banners...
+
+event.preventDefault() : prevent default behavior.
+
+Callback : A function that is passed as an argument to another function, and is executes after the parent function has completed.
+
+

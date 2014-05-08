@@ -1,0 +1,90 @@
+
+PDO: PHP Data Objects
+
+Lightweight ,consistent interface for accessing datatbases in PHP.
+Regardless of which database you're using, you can use the same PDO functions to issue queries and fetch data.
+Represents a connection between PHP and a database server.
+
+
+* Connection management.
+connectiong by creating a new PDO object:
+Make sure to wrap PDO operations in a try/catch block
+# MySQL with PDO_MYSQL
+  $DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+# Closing connection is done by:
+  $DBH = null;
+
+ PDO::ATTR_PERSISTENT => true
+# Check if exception can be throwen to prevent security licks
+
+
+* Prepared Statements.
+A precompiled SQL statement.
+Automatically making the data used in the placeholders safe from SQL injection attacks.
+Can use named or unnamed placeholders.
+
+Unnamed placeholders:
+# the data we want to insert
+$data = array('Cathy', '9 Dark and Twisty Road', 'Cardiff');
+
+$STH = $DBH->("INSERT INTO folks (name, addr, city) values (?, ?, ?);
+$STH->execute($data);
+
+Named Placeholders:
+# the data we want to insert
+$data = array( 'name' => 'Cathy', 'addr' => '9 Dark and Twisty', 'city' => 'Cardiff' );
+
+# the shortcut!
+$STH = $DBH->("INSERT INTO folks (name, addr, city) value (:name, :addr, :city)");
+$STH->execute($data);
+//Can insert many data arrays by using loop to change data
+
+- Can also be used to insert objects if the properties match the named fields
+$STH->execute((array)$Obj);
+
+*Selecting data
+Data is obtained vai the ->fetch()
+$STH->fetch(PDO::FETCH_ASSOC);
+
+PDO::FETCH_ASSOC: returns an array indexed by column name
+PDO::FETCH_NUM: returns an array indexed by column number
+PDO::FETCH_OBJ: returns an anonymous object with property names that correspond to the column names
+PDO::FETCH_CLASS: Assigns the values of your columns to properties of the named class.
+It will create the properties if matching properties do not exist
+Using $STH->setFetchMode(PDO::FETCH_CLASS, 'class_name');  will populate class_name properties with values from the same column name,
+Also, THE CLASS PROPERTIES ARE CREATED BEFORE THE CONSTRUCTOR IS CALLED, so we can set the constructor to modify properties when they get the values from the DB
+* Calling the constructor before the data is assigned:
+$STH->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'class_name');
+
+
+* Helpful Methods
+
+- $DBH->exec('DELETE FROM folks WHERE 1');
+For operations that can not return data other then the affected rows.
+- $safe = $DBH->quote($unsafe);
+Quotes strings so that they are safe to use in queries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

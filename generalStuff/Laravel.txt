@@ -1,0 +1,29 @@
+
+
+- Composer:
+A tool for dependency management in PHP.
+Allows install of libraries our project needs.
+Manages libraries on a project basis, will never install anythig globally.
+Problems solved by the composer:
+* A project thay depends on a number of libraries.
+* Libraries in our project that depend on other libraries.
+* I declare I depend on them.
+* Composer finds out the correct version and installs the package (downloads to the project).
+
+Composer requires PHP 5.3.2+
+To install packages from sources instead of simple zip archives, 
+you will need git, svn or hg depending on how the package is version-controlled.
+
+
+------------------------------------------
+Request Lifecycle
+
+1- Request enters public/index.php file.
+2- bootstrap/start.php file creates Application and detects environment.
+3- Internal framework/start.php file configures settings and loads service providers.
+4- Application app/start files are loaded.
+5- Application app/routes.php file is loaded.
+6- Request object sent to Application, which returns Response object.
+7- Response object sent back to client.
+
+

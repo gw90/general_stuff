@@ -1,0 +1,51 @@
+
+DateTime manipulation:
+
+new DateTime() 
+echo $date->format('התאריך d/m/Y, השעה: H:i:s'); //represents a specific point in time (i.e.: today)
+
+examples for creating DateTime object with dates from the past/future:
+$datePast = DateTime::createFromFormat('d/m/Y', '06/03/2012');
+$past = new DateTime('yesterday');
+$past = new DateTime('tomorrow');
+$past = new DateTime('+5 days');
+$past = new DateTime('-7 years');
+$past = new DateTime('+1 week');
+
+
+------------------------- subtracting dates -----------------------
+
+$now = DateTime::createFromFormat('d/m/Y H:i', '28/04/2011 21:15');
+$independence_day = DateTime::createFromFormat('d/m/Y H:i', '15/05/2011 18:00');
+
+$interval = $now->diff($independence_day);
+print_r($interval);
+
+We print a DateInterval object, this object represents the time difference
+between the 2 dates ($now and $independence_day).
+DateInterval Object ( [y] => 0 [m] => 0 [d] => 16 [h] => 20 [i] => 45 [s] => 0 [invert] => 0 [days] => 16 )
+
+[days] : The number of full days(without months).
+[invert] : 0/1, Represents if subtracting from a smaller or bigger date.
+
+------------------------- Adding dates ---------------------------
+Create a new DateInterval object:
+
+$interval = new DateInterval('P2Y4DT6H8M');
+print_r($interval);
+ 
+P : Period
+T : Time
+
+2Y = 2 Years
+4D = 4 Days
+6H = 6 Hours
+8M = 8 Minutes
+
+Created: 
+DateInterval Object ( [y] => 2 [m] => 0 [d] => 4 [h] => 6 [i] => 8 [s] => 0 [invert] => 0 [days] => )
+
+$now = new DateTime();
+$interval = new DateInterval('P2Y4DT6H8M');
+$now->add($interval);
+echo $now->format('התאריך d/m/Y, השעה: H:i:s');

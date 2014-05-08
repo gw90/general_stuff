@@ -1,0 +1,255 @@
+http://www.tutorialspoint.com/sql/sql-indexes.htm
+http://beginner-sql-tutorial.com/sql-index.htm
+http://use-the-index-luke.com/blog/2013-10-01/mysql-is-to-sql-like-mongodb-to-nosql
+
+------------------------------------------ INDEXES start ----------------------------------------------------
+
+An index is a data structure, commonly a B-tree structure (look-ups,insert,delete done in logarithmic time).
+Another data structure is a hash table, better for comparing equality of strings.
+When searching by index, the search is done on an ordered list of rows(B-tree).
+An index stores the column data and a pointer to the table row.
+Searching by index can be specified in some DB's
+
+
+
+
+Index Data structure: hash.
+* Very fast for comparing string equality (good for username,password).
+* An un urdered data structure, data is not sorted in any particular way.
+
+Index Data structure: B-tree.
+* Can be used for column comparisons in expressions that use the =, >, >=, <, <=, or BETWEEN operators.
+** Can be used for LIKE comparisons if the argument to LIKE is a constant string that does not start with a wildcard character.
+**  In order to be able to use an index, a prefix of the index must be used in every AND group.
+* Using LIMIT will force using an index.
+
+
+
+* A table without a clustered index is referred to as HEAP.
+* Index in sql is created on existing tables to retrieve rows quickly.
+* Indexes are created on columns which are accessed frequently.
+* Index can be created on a single column or a group of columns.
+* When an Index is created, It first sorts the data and then assigns a ROWID for each row.
+* Index can be UNIQUE, prevent duplicate entries in the column or combination of columns (concatenated index).
+* An Index on a column will increase proformance for any search that have WHERE column = 'value' clause.
+* You should not use indexes on small tables or on columns with small selectivity (i.e sex)
+
+
+** Index helps speed up SELECT queries and WHERE clauses.
+** Indexes will slow down operations like: INSERT, UPDATE, DELETE on a table because the indexes
+and the table both need to be updated, So use Indexes on columns which are used to search the table frequently.
+** Indexes should not be used on small tables.
+** Indexes should not be used on columns that contain high number of NULL values.
+** Columns that are frequently manipulated should not be indexed.
+
+
+Clustered index:
+* An index that stores the actual data.
+* A table can have up to one clustered index.
+* Typically, clustered index is synonymos with the Primary key.
+* In InnoDB - Primary key will be used as a clustered index, in MySQL, if no Primary key=> first UNIQUE index
+that has only NOT NULL will be set to Primary key.
+
+
+Non-clustered index / secondary indexes:
+* A pointer to the data.
+* A table can have up to 249 non-clustered indexes.
+* In InnoDB, each record in a secondary index containes the Primary key coloumns for the row.
+
+
+Choosing a column to index:
+* Columns that are used frequently in WHERE clauses.
+* Columns that are used frequently to join tables.
+* Columns that are used frequently in ORDER BY clauses.
+* Columns that are unique.
+* if possible, choose a Primary key that orders the rows in the most appropriate order.
+* If only one column in a concatenated index is used frequently in a WHERE clause, place the column first in the CREATE INDEX statement.
+* If more then one column in a concatenated index is used frequently in a WHERE clause, place the most selective column first in the CREATE INDEX statement.
+
+
+
+-------------------------------------------- INDEXES end ---------------------------------------------------------
+-------------------------------------------- MyISAM & InnoDB start -----------------------------------------------
+
+MyISAM:
+MyISAM was the default storage engine for the MySQL relational database management system.
+
+* Each MyISAM table is stored on the disk in three files:
+- .frm file to store the definition of the table.
+- .MYD the data file.
+- .MYI The Index file.
+
+* MyISAM is optimized for environments with heavy read operations, and a few (or none) write operations.
+Ex: data warehouse, involves queries on very big tables, UPDATE done when DB is not in use.
+
+* Each entry points to a recored in the data file, and the pointer is the offset from the beginning of the file,
+that is why it is easy to read, also INSERT is fast because the rows are appended to the end of the data file.
+* DELETE and UPDATE are problematic because they leave an empty space in the file and therefor need to OPTIMIZE TABLE.
+** Doesn't allow transactions support.
+** foreign keys are not supported.
+** supports FULLTEXT indexing.
+
+
+
+InnoDB:
+* InnoDB is a storage engine for MySQL.
+* InnoDB is the default since MySQL 5.5
+* supports SQL transactions.
+* supports foreign keys.
+* supports Tablespace (A layer of abstraction between physical and logical data).
+* supports FULLTEXT indexing.
+
+* InnoDB tables arrange the data on a disk to optimize common queries based on Primary keys.
+* InnoDB has been designed for maximum proformance when processing large data volumes.
+* InnoDB stores its tables and indexes in a Tablespace, which may consist of several files.
+
+
+
+MyISAM vs InnoDB:
+
+* Main differences are support of: "referential integrity" and "transactions".
+foreign keys, transactions : InnoDB
+concurrency: 
+MyISAM - A DML (data manipulation language) statement will obtain an exclusive lock on the table, no other 
+session can perform a DML statement (not even SELECT) on the table. 
+
+
+
+-------------------------------------------- MyISAM & InnoDB end -------------------------------------------------
+-------------------------------------------- SQL Keys start -------------------------------------------------
+- A table can have multiple Foreign and Unique keys, but only one Primary key.
+- Primary key can never hold NULL values, unique and foreign keys can.
+- Keys can be comprised from more then just one column.
+- A Foreign can reference a non-primary key, the non-primary key must be Unique
+
+SQL PRIMARY KEY constraint:
+* Uniquely identifies each record in the database table.
+* Primary key must contain not NULL and unique values.
+* Each table can and should have only one Primary key.
+
+
+SQL FOREIGN KEY constraint:
+* Used in order to reference unique columns in another table.
+* To be used whenever it makes sense to have a relationship between columns.
+* A Foreign key in one table points to a Primary key in another table.
+* A Foreign key constraint is used to prevent actions that would destroy the links between the tables.
+* Prevents invalid data from being inserted into the foreign key column.
+* Help to maintain referential integrity (Referential integrity is a relational database concept in which multiple tables share a relationship based on the data stored in the tables, and that relationship must remain consistent).
+** The constraints imposed by a Foreign key should be programmed (i.e. cascading delete)
+
+
+SQL UNIQUE KEY constraint:
+* Uniquely identifies each record in the database table.
+* Can accept only unique values.
+* A table can have many unique key constraints.
+
+-------------------------------------------- SQL Keys end -------------------------------------------------
+
+-------------------------------------------- GENERAL start -------------------------------------------------
+
+Referential integrity:
+* Referential integrity is a relational database concept in which multiple tables share 
+a relationship based on the data stored in the tables, and that relationship must remain consistent
+* 3 rules that referential integrity enforces:
+1: Insert new rows
+	We may not add a record to table A 
+	unless the foreign key for that record points to an existing employee in table B
+2: Cascading delete
+	If a record in table A is deleted, all corresponding 
+	records in table B must be deleted using a cascading delete
+3: Cascading update
+	If the primary key for a record in table A changes, 
+	all corresponding records in table B must be modified using what's called a cascading update.
+
+
+* Buffered and Unbuffered queries
+    Queries are using buffered mode by default.
+    Buffered:
+    MySQL results are kept in the PHP process memory, allowing additional operations: counting rows,moving result pointer...
+    Large results might need a lot of memory, that will be occupied until the result is freed
+    Unbuffered:
+    Available only for MySQLi and PDO_MySQL
+    Execute the query and return a resource while the data is still waiting on the MySQL server for being fetched.
+    Uses less memory on the PHP side, can increase load on the server
+
+
+
+
+------------------------------------------------ GENERAL end -------------------------------------------------
+------------------------------------- MySQL Practices start --------------------------------------------------
+http://net.tutsplus.com/tutorials/other/top-20-mysql-best-practices/
+
+* Query cache: avoid using non-determenistic functions such as: CURDATE(),NOW(),RAND()... instead,store the time
+	data in a variable and use the variable in the query.
+* EXPLAIN keyword: use EXPLAIN to spot bottlenecks and other problems in the query or table structure.
+	the results of EXPLAIN show which indexes are utilized, how the table is bieng scanned...
+* LIMIT 1: When searching for just 1 row, add LIMIT 1 to prevent scanning the whole table.
+* Indexes: Index fields which you search by.
+* Index and use same column types for JOIN
+* Do not ORDER BY RAND(), instead you can: LIMIT $rand,1
+* Avoid SELECT *, save time, disk operations and time transferring the result data.
+* Have an ID field. type INT.
+* Use Enum over VARCHAR. ENUM stored like TINYINT.
+* PROCEDURE ANALYSE(): After having enough data, run Propose table structure from phpmyadmin or PROCEDURE ANALYSE()
+	and get structure suggestions based on the actual data.
+* use NOT NULL if you can. NULL values take more space then 0 or empty strings, 
+	also can add complexity to comparison statements.
+* use Prepared Statements: Filter variables by default, minimize the number of parsing the query by assigning 
+	different values to the same prepared statement.
+* Store IP addresses as UNSIGNED INT: use only 4 bytes of space. (* check if still applies to IPv6)
+	use INET_ATON() in the query to convert an IP to Integer, or INET_NTOA() for vice versa.
+* Fixed-Length (Static) Tables: If all the fields are fixed length the table is also considered static or fixed length.
+	Not fixed length fields: VARCHAR,TEXT,BLOB.
+	Fixed length tables are faster to seek thourgh, and easier to cache and reconstruct after a crash.
+	There is a down side in converting VARCHAR(20) into CHAR(20), the field will always hold 20 bytes.
+* Vertical Partitioning: The act of splitting table structure in a vertical manner for optimization.
+	Example: Extracting a "last_login" field which updates every user login into another table, 
+	this way we can prevent query cache for the table from being flushed.
+	* make sure you dont need to constantly JOIN these 2 tables or proformance will suffer.
+* Split big DELETE or INSERT queries: prevent the tables from locking for a long time by using LIMIT clause
+	to preform the query in small batches to avoid congestion.
+	Can also add usleep(time) to pause.
+* use Object Relational Mapping ORM: something like creating a new syntax and encapsulated methods.
+* Smaller Columns are faster: example: use DATE instead of DATETIME
+* Choose the right storage engine: MyISAM for heavy read applications, fast.
+	InnoDB: row based locking, scales better, more advanced.
+	
+
+--------------------------------------- MySQL Practices end ---------------------------------------------------
+--------------------------------------- MySQL transactions start ----------------------------------------------
+
+A transaction is a sequential group of database manipulation operations, 
+which is performed as if it were one single work unit. 
+In other words, a transaction will never be complete unless each individual operation 
+within the group is successful. 
+If any operation within the transaction fails, the entire transaction will fail.
+
+Practically, you will club many SQL queries into a group 
+and you will execute all of them together as part of a transaction.
+
+Transactions standard properties, ACID:
+Atomicity: 
+	Ensures that all operations within the work unit are completed successfully.
+Consistency: 
+	Ensures that the DB properly changes states upon a successfully committed transaction.
+Isolation: 
+	Enables transaction transactions to operate independently and transparent to each other.
+Durability: 
+	Ensures that the result or effect of a committed transaction persists in case of system failure.
+
+In MySQL:
+Transactions begin with the statement: BEGIN WORK and end with either COMMIT or ROLLBACK
+The SQL commands between beginning and end statements form the bulk of the transaction.
+
+* COMMIT:
+Changes to all tables involved in the successful transaction take effect.
+* ROLLBACK:
+Returns every table referenced in the transaction to its previous state in case of transaction failure.
+
+Generic Example on Transaction
+- Begin transaction by issuing SQL command BEGIN WORK.
+- Issue one or more SQL commands like SELECT, INSERT, UPDATE or DELETE.
+- Check if there is no error and everything is according to your requirement.
+- If there is any error, then issue ROLLBACK command, otherwise issue a COMMIT command.
+
+--------------------------------------- MySQL transactions end ----------------------------------------------

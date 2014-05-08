@@ -1,0 +1,3 @@
+
+- The DOM extension allows you to operate on XML documents through the DOM API with PHP 5
+- The DOM library reads the entire XML document into memory and represents it as a tree of nodes.

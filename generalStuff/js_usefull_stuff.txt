@@ -1,0 +1,108 @@
+-------------------------------------------- Re Introduction to JS---------------------------------------------------
+
+- Setting default value for var:
+var name = otherName || "default";
+
+- check if obj is null before accessing attributes:
+var name = objName && objName.getName();
+
+- creating js object:
+var obj = new Object();
+var obj = {};  *preferred since it is also the core of JSON format
+
+- Accessing and setting object properties:
+obj.name = "Simon";
+var name = obj.name;
+obj["name"] = "Simon";
+var name = obj["name"];
+obj.details.color
+obj["details"]["size"]
+
+- Creating and populating js arrays:
+OLD way:
+var a = new Array()
+a[0] = 'dog'
+a[1] = 'cat'
+NEW way:
+var a = ['dog','cat']
+
+- Loop array elements:
+for(var i = 0; len = arr.length; i < len; i++){
+}
+for(var i = 0; arrItem; arrItem = arr[i++]){
+//This method will stop when arrItem is a falsy statement, such as an undefined
+//*Not to be used when the value can be false - ex: 0 or an empty string*
+}
+
+- Append item into an array:
+arr[arr.length] = item
+
+- In JS functions are objects.
+- Functions return undefined if no return value is specified
+
+- Can send as many variables as I want to a function
+If the function is expecting less parameters then what was sent - The excess parameters will be ignored
+
+- All params sent to the function can be accessed via: arguments
+arguments is an array-like object which holds all the paremeters sent to the function
+
+- func_name.apply(null,[2,3,4,5])
+Will send the array [2,3,4,5] as comma seperated values to function func_name
+
+- JS allows creating anonymos functions
+Anonymos functions are created at runtime, can be created after a certain action.
+Can assign a name to an anonymos function, this can be usefull for recursive functions
+
+- Constructor functions:
+Desgined to be call by new keyword => these function name are capitalized
+
+Create and add the initial attributes and function to the created object ex:
+	function personFullName() {
+		return this.first + ' ' + this.last;
+	}
+	function personFullNameReversed() {
+		return this.last + ', ' + this.first;
+	}
+	function Person(first, last) {
+		this.first = first;
+		this.last = last;
+		this.fullName = personFullName;
+		this.fullNameReversed = personFullNameReversed;
+	}
+the Person instance will be able to activate personFullName() by Person.personFullName
+
+- prototype
+Anything assigned to Person.prototype becomes available by all instances of Person constructor
+
+lastNameCaps.call(s);
+Is: call function lastNameCaps as if object s is calling it.
+s.lastNameCaps = lastNameCaps;
+s.lastNameCaps();
+
+Inner Functions:
+- In JS we can declare a function from within a function. The inner function can access variables in the parent function scope.
+- Can couple several related functions under one parent function, 
+  since all the childeren functions can access the parent function variables, we can create 'local globals', 
+  variables in the parent scope which will be accessible to childeren functions.
+
+
+from && $('#from').val(from);
+The && operator is a short cut, first we check that from exist
+and if it exist the field #from will be set with the value of from
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

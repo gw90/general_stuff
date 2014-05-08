@@ -1,0 +1,24 @@
+
+When checking Email addresses we need to check 2 things:
+1- The structure of the Email address.
+2- Check that the Email exists.
+
+function isValidEmail($mail)
+{
+    if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) return false;
+    $host = explode("@",$mail); $mxarr = array();
+    if (!getmxrr($host[1], $mxarr)) return false;
+    return true;
+}
+
+isValidEmailmail('test@phpguide.co.il'); // true
+isValidEmail('test@phpguide444444.co.il'); // false
+
+FILTER_VALIDATE_EMAIL : A built-in filter to validate Email address structure.
+function getmxrr()  : Check if there is a MX record for the Email address (DNS record)
+
+By now we know that the structure is correct and that there is a MX record
+for this Email address, We still dont know that the user that entered the 
+address is the user holding the Email, and we need to send a verification
+Email. 
+ 

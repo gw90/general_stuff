@@ -1,0 +1,122 @@
+
+----------------------Amazon S3-------------------
+- An online storage facility. cheap and easy to setup.
+- Can be used to store and retrieve any amount of data, at any time, from anywhere on the web.
+- Write, read and delete an unlimited number of objects.
+- Each object is stored in a bucket and retrieved via a unique, developer assigned key.
+- A bucket can be stored in one of several regions, depending on latency,costs or address requirements.
+Uses standards-based REST and SOAP interfaces.
+
+S3 is most suitable for webmasters and bloggers.
+Can also be used CDN (content delivery network)
+
+Use Scenarios for S3:
+- Backup and Storage: Provide data backup and storage services for others.
+- Application Hosting: Provide services that deploy, install, and manage web applications.
+- Media Hosting: Build infrastructure that hosts video,photo,music uploads/downloads.
+- Software Delivery: Host software applications that customers can download.
+
+Can access via: 
+control panel - https://console.aws.amazon.com/s3/
+FireFox addon
+smartFTP
+CloudBerry Explorer
+----------------------End Amazon S3-------------------
+
+
+----------------------Amazon EC2-------------------
+Amazon Elastic Compute Cloud (Amazon EC2).
+A web server that provides resizable compute capacity in the cloud.
+EC2 is designed to make web-scale computing easier for developers.
+EC2's web service interface allows you to obtain and configure capacity with minimal friction.
+EC2 reduces the time required to obtain and boot new server instances to minutes.
+You pay for the capacity you actualy use.
+
+
+EC2 functionality:
+EC2 allows use of web service interfaces to launch instances with a variety of
+operating systems, load instances with custom application environment,
+manage network access permissions and run our image using as many or few systems we desire.
+- Select a pre configures , templated Amazon Machine Image.
+- Configure security and network access to EC2 instance.
+- Choose instance types and control them.
+- Attach persistent block storage to instances.
+- Pay only for resources you actually consume.
+
+----------------------End Amazon EC2-------------------
+
+
+-----------------------General-----------------------
+* Amazon EC2 Instance is a virtual server. 
+
+* A bucket is Amazon S3's terminoligy for a Root folder.
+It is a container for objects stored in Amazon S3.
+Buckets are similar to Internet domain names.
+
+* AMI- Amazon Machine Image - An encrypted machine image 
+that containes information necessary to boot instances of your operating system
+and software. Each machine or server is represented by a 
+file called AMI.
+-----------------------End General-----------------------
+
+
+----------------------Instances-------------------------
+Instance Types:
+
+- General Purpose Instances.
+A balanced set or resources, a high level processing performance on 
+a low cost platform. Ideal for applications that require balanced CPU
+and memory performance. (Examples: encoding, high traffic content management systems and memcached).
+ 
+- Compute Optimized Instances.
+Proportionally more CPU resources than memory (RAM), well suited
+for compute intensive applications.
+
+- GPU Instances.
+Provide graphics processing units (GPUs) along with high CPU and network performance
+for applications benefiting from highly parallelized processing, 
+including 3D graphics, HPC, rendering, and media processing applications. 
+
+- Mempry Optimized Instances.
+Large memory sizes for high throughput applications.
+Database and memory caching applications.
+
+- Storage Optimized Instances.
+Very high disk I/O performance or proportionally higher density
+per instance. Ideal for applications that benefit from high sequential I/O performance
+across very large data sets.
+
+- Micro Instances.
+Small amount of consistent CPU resources and allow you to increase CPU capacity
+in short bursts when additional cycles are available.
+Suited for lower throuput applications and web sites that require additional compute cycles periodically.
+----------------------End Instances-------------------------
+
+----------Elastic Block Store (EBS)----------------------
+Storage designed specifically for Amazon EC2 Instances.
+EBS allows you to create columes that Amazon EC2 Instances can mount as devices.
+
+
+----------End Elastic Block Store----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
