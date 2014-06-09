@@ -1,0 +1,23 @@
+
+MySQL views are essentially a way to package up SELECT statements into a re-usable virtual tables.
+A view is only a prepared SQL statement that is run when you reference the view name.
+Rather than repeating the associated SELECT statement, we simply reference the view.
+
+Views are most commonly used in conjunction with JOINS 
+
+Views are created in MySQL using the CREATE VIEW statement.
+Once the view is created, we can treat it as we would a regular table in a SELECT statement.
+
+We can see what is the underlying SELECT statement that created the view by running:
+SHOW CREATE VIEW view name;
+
+It is possible to DELETE or REPLACE a view.
+
+A view cannot be created using subqueries.
+A view does not have indexes  
+
+Because a view is a derived table, the performance of the view is only as good as the query it is built on. 
+If that query sucks, the performance issue will just snowball...
+
+
+ 
