@@ -1,0 +1,8 @@
+
+//Check for missing ids in a sequntiol column (itemId)
+
+SELECT a.`itemId`+1 AS start, MIN(b.`itemId`) - 1 AS end, (MIN(b.`itemId`) - 1)-(a.`itemId`+1) AS Missing_Ids
+    FROM `item` AS a, `item` AS b
+    WHERE a.`itemId` < b.`itemId`
+    GROUP BY a.`itemId`
+    HAVING start < MIN(b.`itemId`)
