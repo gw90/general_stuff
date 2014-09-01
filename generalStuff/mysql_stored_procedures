@@ -1,0 +1,25 @@
+A stored procedure is a subroutine available to applications that access a relational database system (MySQL).
+The stored procedure (SP) is actually stored in the database data dictionary.
+Extensive or complex processing that requires execution of several SQL statements is moved into a stored procedure, and
+all applications call the procedures.
+
+SP must be invoked using the CALL statement.
+
+Advantages:
+- Stored procedures help increase performance of the applications.
+MySQL stored procedures are compiled on demand.
+After compiling, MySQL stores the SP in its cache and maintains its own SP cache for every single connection.
+
+- Stored procedure help reduce traffic between application and DB because instead of sending
+multiple lengthy SQL statements, the application sends only the name of the SP.
+
+- SP are reusable and transparent to any application, stored procedures expose the DB interface to all applications
+so that developers don't have to develop functions that are already in the SP.
+
+- Stored procedure are secure. Applications can access SP without having permissions to the underlying database tables.
+ 
+Disadvantages:
+- Many SP's will cause the memory usage for every connection to increase substantially.
+A large number of logical operations will increase the CPU usage.
+
+- Difficult to debug SP, MySQL do not allow debugging SP's
