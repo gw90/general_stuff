@@ -1,0 +1,58 @@
+JAVA GENERAL:
+-------------------------------------------------------------------------
+Java is a computer programming language that is:
+Concurrent
+Class-based
+Object Oriented
+Designed to have a few implementation dependencies as possible
+
+The language derives much of its syntax from C and C++
+
+-------------------------------------------------------------------------
+J2EE - Java 2 Platform Enterprise Edition:
+A Java centric environment by Sun, For developing, building 
+and deploying Web-based applications online.
+
+The J2EE platform consists of a set of services, API's and protocols
+that provide the functionality for developing multitierd,  Web-based applications.
+
+Key features and services of J2EE:
+
+- At the client tier, J2EE supports pure HTML, as well as Java applets,
+	It relies on Java Server Pages (JSP) and servlet code to create HTML or other formatted data for the client.
+
+- Enterprise JavaBeans (EJBs) provide another layer where the platform's logic is stored,
+	An EJB server provides functions such as threading, concurrency, security and memory management.
+
+- Java Database Connectivity (JDBC), Java equivalent to Open Database Connectivity (ODBC),
+	is the standard interface for Java databases.
+
+- The Java servlet API enhances consistency for developers without requiring a graphical user interface (GUI).
+
+
+-------------------------------------------------------------------------
+Graphical user interface (GUI):
+A program interface that takes advantage of the computer's graphical capabilities
+to make the program easier to use.
+A well designed GUI can free the user from learning complex command languages.
+
+-------------------------------------------------------------------------
+Servlet:
+A small program that runs on a server.
+The term usually refers to a Java applet that runs within a Web Server environment.
+Java applet is persistent, this means that once it started,
+it stays in memory and can fulfil multiple requests, this way there is not time
+wasted on setting up and tearing down the process.
+
+-------------------------------------------------------------------------
+Java Server Page (JSP):
+A server side technology, JSP are an extension to the Java servlet technology.
+JSPs have a dynamic scripting capability that works in tandem with HTML code,
+separating the page logic from the static elements.
+A JSP is translated into Java servlet before being run, 
+and it processes HTTP requests and generates responses like any servlet. 
+JSP technology provides a more convenient way to code a servlet. Translation occurs the first time the application is run
+You can include output from a servlet or forward the output to a servlet, 
+and a servlet can include output from a JSP or forward output to a JSP
+
+-------------------------------------------------------------------------
